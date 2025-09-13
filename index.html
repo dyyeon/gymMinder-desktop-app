@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymMinder - 웨이트 트레이닝 루틴 관리</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <h1>GymMinder</h1>
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-item active" data-section="routine-generator">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>루틴 생성</span>
+                </button>
+                <button class="nav-item" data-section="routine-history">
+                    <i class="fas fa-history"></i>
+                    <span>기록 조회</span>
+                </button>
+                <button class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>설정</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <span class="user-name">Gym Warrior</span>
+                        <span class="user-level">Level 5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <!-- 루틴 생성 섹션 -->
+            <div id="routine-generator" class="content-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-dumbbell"></i> 루틴 생성기</h2>
+                    <p>분할 유형과 근육 상태를 입력하여 맞춤형 루틴을 생성하세요</p>
+                </div>
+
+                <div class="routine-form">
+                    <div class="form-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-fire"></i> 분할 유형</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="split-options">
+                                <label class="split-option" data-split="fullbody">
+                                    <input type="radio" name="split-type" value="fullbody">
+                                    <div class="option-card">
+                                        <div class="option-icon">
+                                            <i class="fas fa-dumbbell"></i>
+                                        </div>
+                                        <div class="option-content">
+                                            <h4>전신</h4>
+                                            <p>Full Body</p>
+                                        </div>
+                                    </div>
+                                    <div class="tooltip">
+                                        <h4>🏋️ 전신 운동</h4>
+                                        <p>모든 주요 근육 그룹을 한 번에 운동하는 방식입니다.</p>
+                                        <ul>
+                                            <li>• 초보자에게 적합</li>
+                                            <li>• 시간이 제한적인 경우</li>
+                                            <li>• 주 3-4회 운동</li>
+                                            <li>• 전신 균형 발달</li>
+                                        </ul>
+                                    </div>
+                                </label>
+                                
+                                <label class="split-option" data-split="upperlower">
+                                    <input type="radio" name="split-type" value="upperlower">
+                                    <div class="option-card">
+                                        <div class="option-icon">
+                                            <i class="fas fa-arrows-alt-v"></i>
+                                        </div>
+                                        <div class="option-content">
+                                            <h4>상하체 분할</h4>
+                                            <p>Upper/Lower</p>
+                                        </div>
+                                    </div>
+                                    <div class="tooltip">
+                                        <h4>💪 상하체 분할</h4>
+                                        <p>상체와 하체를 번갈아가며 운동하는 방식입니다.</p>
+                                        <ul>
+                                            <li>• 중급자에게 적합</li>
+                                            <li>• 주 4-5회 운동</li>
+                                            <li>• 상체/하체 균형 발달</li>
+                                            <li>• 회복 시간 확보</li>
+                                        </ul>
+                                    </div>
+                                </label>
+                                
+                                <label class="split-option" data-split="pushpulllegs">
+                                    <input type="radio" name="split-type" value="pushpulllegs">
+                                    <div class="option-card">
+                                        <div class="option-icon">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </div>
+                                        <div class="option-content">
+                                            <h4>푸시/풀/레그</h4>
+                                            <p>Push/Pull/Legs</p>
+                                        </div>
+                                    </div>
+                                    <div class="tooltip">
+                                        <h4>🔥 푸시/풀/레그</h4>
+                                        <p>밀기, 당기기, 하체 운동으로 분할하는 방식입니다.</p>
+                                        <ul>
+                                            <li>• 고급자에게 적합</li>
+                                            <li>• 주 6회 운동</li>
+                                            <li>• 근육 기능별 분할</li>
+                                            <li>• 집중도 높은 운동</li>
+                                        </ul>
+                                    </div>
+                                </label>
+                                
+                                <label class="split-option" data-split="bro">
+                                    <input type="radio" name="split-type" value="bro">
+                                    <div class="option-card">
+                                        <div class="option-icon">
+                                            <i class="fas fa-fire"></i>
+                                        </div>
+                                        <div class="option-content">
+                                            <h4>브로 분할</h4>
+                                            <p>Bro Split</p>
+                                        </div>
+                                    </div>
+                                    <div class="tooltip">
+                                        <h4>⚡ 브로 분할</h4>
+                                        <p>각 근육 그룹을 개별적으로 집중 운동하는 방식입니다.</p>
+                                        <ul>
+                                            <li>• 고급자에게 적합</li>
+                                            <li>• 주 5-6회 운동</li>
+                                            <li>• 부위별 집중 운동</li>
+                                            <li>• 최대 회복 시간</li>
+                                        </ul>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar-day"></i> 어제 운동한 부위</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="muscle-grid">
+                                <label class="muscle-item" data-muscle="chest">
+                                    <input type="checkbox" name="yesterday-muscles" value="chest">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-heart"></i>
+                                        <span>가슴</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="back">
+                                    <input type="checkbox" name="yesterday-muscles" value="back">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>등</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="shoulders">
+                                    <input type="checkbox" name="yesterday-muscles" value="shoulders">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-arrows-alt"></i>
+                                        <span>어깨</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="biceps">
+                                    <input type="checkbox" name="yesterday-muscles" value="biceps">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-fist-raised"></i>
+                                        <span>이두근</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="triceps">
+                                    <input type="checkbox" name="yesterday-muscles" value="triceps">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-hand-rock"></i>
+                                        <span>삼두근</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="legs">
+                                    <input type="checkbox" name="yesterday-muscles" value="legs">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-running"></i>
+                                        <span>하체</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="abs">
+                                    <input type="checkbox" name="yesterday-muscles" value="abs">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-square"></i>
+                                        <span>복근</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-exclamation-triangle"></i> 근육통 부위</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="muscle-grid">
+                                <label class="muscle-item" data-muscle="chest">
+                                    <input type="checkbox" name="sore-muscles" value="chest">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-heart"></i>
+                                        <span>가슴</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="back">
+                                    <input type="checkbox" name="sore-muscles" value="back">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>등</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="shoulders">
+                                    <input type="checkbox" name="sore-muscles" value="shoulders">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-arrows-alt"></i>
+                                        <span>어깨</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="biceps">
+                                    <input type="checkbox" name="sore-muscles" value="biceps">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-fist-raised"></i>
+                                        <span>이두근</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="triceps">
+                                    <input type="checkbox" name="sore-muscles" value="triceps">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-hand-rock"></i>
+                                        <span>삼두근</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="legs">
+                                    <input type="checkbox" name="sore-muscles" value="legs">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-running"></i>
+                                        <span>하체</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="muscle-item" data-muscle="abs">
+                                    <input type="checkbox" name="sore-muscles" value="abs">
+                                    <div class="muscle-card">
+                                        <i class="fas fa-square"></i>
+                                        <span>복근</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button id="generate-routine" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            루틴 생성하기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 생성된 루틴 표시 영역 -->
+                <div id="routine-result" class="routine-result" style="display: none;">
+                    <div class="result-header">
+                        <h3><i class="fas fa-trophy"></i> 생성된 루틴</h3>
+                        <div class="result-actions">
+                            <button id="view-routine-detail" class="btn btn-primary">
+                                <i class="fas fa-eye"></i>
+                                루틴 상세보기
+                            </button>
+                        </div>
+                    </div>
+                    <div id="routine-summary" class="routine-summary"></div>
+                </div>
+            </div>
+
+            <!-- 기록 조회 섹션 -->
+            <div id="routine-history" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> 루틴 기록</h2>
+                    <p>과거에 생성한 루틴들을 확인하고 관리하세요</p>
+                </div>
+
+                <div class="history-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="history-search" placeholder="날짜나 부위로 검색...">
+                    </div>
+                    <button id="load-history" class="btn btn-primary">
+                        <i class="fas fa-refresh"></i>
+                        새로고침
+                    </button>
+                </div>
+
+                <div id="history-list" class="history-list"></div>
+            </div>
+
+            <!-- 설정 섹션 -->
+            <div id="settings" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-cog"></i> 설정</h2>
+                    <p>애플리케이션 설정을 관리하세요</p>
+                </div>
+
+                <div class="settings-content">
+                    <div class="setting-group">
+                        <h3><i class="fas fa-folder"></i> 데이터 저장</h3>
+                        <p>루틴 데이터는 로컬에 안전하게 저장됩니다.</p>
+                    </div>
+
+                    <div class="setting-group">
+                        <h3><i class="fas fa-bell"></i> 알림 설정</h3>
+                        <div class="setting-item">
+                            <label class="switch">
+                                <input type="checkbox" id="auto-save" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span>루틴 생성 시 자동 저장</span>
+                        </div>
+                        <div class="setting-item">
+                            <label class="switch">
+                                <input type="checkbox" id="show-tips" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span>운동 팁 표시</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 루틴 테이블 템플릿 -->
+    <script id="routine-table-template" type="text/template">
+        <div class="routine-info">
+            <div class="routine-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>{{date}}</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>{{splitType}}</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>{{estimatedTime}}분</span>
+                </div>
+            </div>
+        </div>
+        <div class="table-container">
+            <table class="routine-table">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-dumbbell"></i> 운동</th>
+                        <th><i class="fas fa-layer-group"></i> 세트</th>
+                        <th><i class="fas fa-repeat"></i> 반복</th>
+                        <th><i class="fas fa-bullseye"></i> 부위</th>
+                        <th><i class="fas fa-star"></i> 난이도</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#exercises}}
+                    <tr>
+                        <td class="exercise-name">{{name}}</td>
+                        <td class="exercise-sets">{{sets}}</td>
+                        <td class="exercise-reps">{{reps}}</td>
+                        <td class="exercise-muscle">{{muscle}}</td>
+                        <td class="exercise-difficulty">
+                            <span class="difficulty-badge difficulty-{{difficulty}}">{{difficultyText}}</span>
+                        </td>
+                    </tr>
+                    {{/exercises}}
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <!-- 기록 아이템 템플릿 -->
+    <script id="history-item-template" type="text/template">
+        <div class="history-item">
+            <div class="history-header">
+                <div class="history-info">
+                    <h4>{{date}} - {{splitType}}</h4>
+                    <div class="history-stats">
+                        <span><i class="fas fa-dumbbell"></i> {{exerciseCount}}개 운동</span>
+                        <span><i class="fas fa-clock"></i> {{estimatedTime}}분</span>
+                    </div>
+                </div>
+                <div class="history-actions">
+                    <button class="btn btn-sm btn-outline view-routine" data-id="{{id}}">
+                        <i class="fas fa-eye"></i>
+                        보기
+                    </button>
+                    <button class="btn btn-sm btn-danger delete-routine" data-id="{{id}}">
+                        <i class="fas fa-trash"></i>
+                        삭제
+                    </button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <!-- 루틴 상세보기 팝업 -->
+    <div id="routine-detail-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-dumbbell"></i> 루틴 상세보기</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-routine-info" class="routine-info"></div>
+                <div id="modal-routine-table-container" class="table-container"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-save-routine" class="btn btn-secondary">
+                    <i class="fas fa-save"></i>
+                    저장
+                </button>
+                <button id="modal-export-routine" class="btn btn-outline">
+                    <i class="fas fa-download"></i>
+                    내보내기
+                </button>
+                <button id="modal-edit-routine" class="btn btn-primary" style="display: none;">
+                    <i class="fas fa-edit"></i>
+                    수정
+                </button>
+                <button id="modal-delete-routine" class="btn btn-danger" style="display: none;">
+                    <i class="fas fa-trash"></i>
+                    삭제
+                </button>
+                <button id="modal-close-routine" class="btn btn-outline">
+                    <i class="fas fa-check"></i>
+                    확인
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
