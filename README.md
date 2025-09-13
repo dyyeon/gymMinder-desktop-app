@@ -1,4 +1,5 @@
 # 🏋️ GymMinder - 스마트 웨이트 트레이닝 루틴 관리자
+
 ![Screenshot](https://github.com/dyyeon/gymMinder-desktop-app/blob/85ba96c2974caee1fc651ac3ff08524a11785885/screenshots/1_%EB%A3%A8%ED%8B%B4%EC%83%9D%EC%84%B1%ED%99%94%EB%A9%B4.png)
 
 ## 📋 프로젝트 개요
